@@ -1,15 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Nonbay2</title>
+    <title>Nonbay</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <header>
+      <div class="header-content">
+        <div class="left-content">
+          <%= link_to image_tag('sugidama.png', size: "60x60"), root_path, class: "header-img" %>
+          <%= link_to 'のんべぇ', root_path, class: "title" %>
+          <%= link_to '地域検索', areas_path, class: "brand-search" %>
+          <%= link_to '味わい検索', "#", class: "feature-search" %>
+        </div>
+        <div class="center-content">
+          <form>
+            <%= form_with(url: search_brands_path, local: true, method: :get, class: "search-form") do |f| %>
+              <%= f.text_field :keyword, placeholder: "銘柄検索", class: "search-input" %>
+              <%# <%= f.submit "検索", class: "search-btn" %>
+            <% end %>
+          </form>
+        </div>
+        <div class="right-content">
+          <%# <% if user_signed_in? %>
+            <%# <%= link_to 'ログアウト', destroy_user_session_path, method: :DELETE, class: "logout" %>
+          <%# <% else %>
+            <%# <%= link_to 'ログイン', new_user_session_path, class: "login" %>
+            <%# <%= link_to '新規登録', new_user_registration_path, class: "signup" %>
+          <%# <% end %>
+        </div>
+      </div>
+    </header>
+    <main>
+      <%# <% if user_signed_in? && current_page?(root_path) %>
+        <%# <div class="top-main-wrapper"> %>
+          <%# <div class="top-main-container"> %>
+            <%# <%= yield %>
+          <%# </div> %>
+        <%# </div> %>
+        <%# <div class="side-menu"> %>
+          <%# <%= render "shared/mypage" %>
+        <%# </div> %>
+      <%# <% elsif current_page?(root_path) %>
+        <%# <div class="guest-main-wrapper"> %>
+          <%# <div class="guest-main-container"> %>
+            <%# <%= yield %>
+          <%# </div> %>
+        <%# </div> %>
+      <%# <% else %>
+        <div class="main-wrapper">
+          <div class="main-container">
+            <%= yield %>
+          </div>
+        </div>
+      <%# <% end %>
+    </main>
   </body>
 </html>
+

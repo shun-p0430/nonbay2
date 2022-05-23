@@ -1,0 +1,41 @@
+<div class="new-review-container">
+  <h2>レビュー投稿</h2>
+
+
+  <%= form_with model: [@brand, @review], local: true do |f| %>
+    <%# <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="review-field">
+      <%= f.label :comment, "コメント" %><br>
+      <%= f.text_field :comment, placeholder: 'コメント内容', rows: 5, autofocus: true %>
+    </div>
+
+    <%= f.file_field :image, placeholder: '画像' %>
+
+    <div class="review-field">
+      <%= f.label :aroma, "香り" %>:
+      <%= f.select :aroma, [["穏やか", "穏やか"], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], ["華やか", "華やか"]], include_blank: "選択してください" %>
+    </div>
+
+    <div class="review-field">
+      <%= f.label :impression, "第一印象" %>:
+      <%= f.select :impression, [["優しい", "優しい"], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], ["しっかり", "しっかり"]], include_blank: "選択してください" %>
+    </div>
+
+    <div class="review-field">
+      <%= f.label :taste, "旨味" %>:
+      <%= f.select :taste, [["軽快", "軽快"], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], ["芳醇", "芳醇"]], include_blank: "選択してください" %>
+    </div>
+
+    <div class="review-field">
+      <%= f.label :afterglow, "余韻" %>:
+      <%= f.select :afterglow, [["短い", "短い"], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], ["長い", "長い"]], include_blank: "選択してください" %>
+    </div>
+
+
+    <div class="review-actions">
+      <%= f.submit "投稿" %>
+    </div>
+  <% end %>
+  <%= link_to '戻る', brand_path(@brand) %>
+</div>
