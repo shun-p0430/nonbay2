@@ -1,3 +1,19 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'reviews#index'
+  resources :areas, only: [:index, :show] do
+    resources :breweries, only: [:new, :create]
+  end
+
+  resources :breweries, only: [:index, :show] do
+    resources :brands, only: [:new, :create]
+  end
+  
+  resources :brands, only: [:index, :show] do
+    collection do
+      get :search
+    end
+    resources :reviews, only: [:new, :create]
+  end
+
+  resources :users, only: [:show, :edit, :update]
 end
